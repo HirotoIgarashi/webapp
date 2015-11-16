@@ -17,6 +17,7 @@ $ sudo make uninstall0
 $ sudo apt-get install build-essential libssl-dev git-core
 $ sudo apt-get install curl
 $ mkdir nodejs
+$ cd nodejs
 $ git clone http://github.com/isaacs/nave.git
 $ cd nave
 $ ./nave.sh install latest
@@ -27,5 +28,21 @@ $ ./nave.sh use latest
 $ node -v
 ```
 
+~/.bashrcに以下を追記。
+``
+alias nave=$HOME/nodejs/nave/nave.sh
+``
+## GitHubからダウンロード
+```
+$ mkdir ~/git
+$ cd git
+$ git clone http://github.com/HirotoIgarashi/webapp.git
+```
+
 ## start
-node app.js
+``
+$ cd ~/git/webapp
+$ nave use latest
+$ node app.js
+listening on port 3000
+``
