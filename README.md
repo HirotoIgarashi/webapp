@@ -1,8 +1,10 @@
 # webapp
 spaをjavascriptとnodeで構築する。nodeの管理をnaveを利用することにする。
 
-# Node実行環境の準備
 ## Node.jsとnpmのアンインストール
+この後でnaveを利用してnode.jsとnpmをインストールするため、
+既に開発環境にnodeがインストールされている場合に実行する。
+nodeがインストールされている場合は必要ない。
 
 ```
 $ sudo npm uninstall npm
