@@ -1,10 +1,10 @@
 # webapp
-spaをjavascriptとnodeで構築する。nodeの管理をnaveを利用することにする。
+spaをjavascriptとNode.jsで構築する。Node.jsの管理をnaveを利用することにする。
 
 ## Node.jsとnpmのアンインストール
-この後でnaveを利用してnode.jsとnpmをインストールするため、
+この後でnaveを利用してNode.jsとnpmをインストールするため、
 既に開発環境にnodeがインストールされている場合に実行する。
-nodeがインストールされている場合は必要ない。
+Node.jsがインストールされている場合は必要ない。
 
 ```
 $ sudo npm uninstall npm
@@ -39,7 +39,12 @@ $ cd git
 $ git clone http://github.com/HirotoIgarashi/webapp.git
 ```
 
-## start
+## モジュールのインストール
+``
+$ npm install
+``
+
+## サーバを起動
 ```
 $ cd ~/git/webapp
 $ nave use latest
