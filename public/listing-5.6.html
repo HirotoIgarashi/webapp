@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 5.6</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+      #box { position: absolute; border: 3px solid blue; width: 200px; height: 200px; background-color: #9495ed; font-size: 2em; }
+    </style>
+  </head>
+  <body>
+    <div id="box">ボックス</div>
+
+    <script type="text/javascript">
+
+      function animateIt(elementId) {
+        var elem = document.getElementById(elementId);
+        var tick = 0;
+
+        var timer = setInterval(function() {
+          if (tick < 100) {
+            elem.style.left = elem.style.top = tick + "px";
+            tick++;
+          }
+          else {
+            clearInterval(timer);
+            assert(tick == 100,
+                "tickはクロージャ経由でアクセスできる。");
+            assert(elem,
+                "要素もクロージャ経由でアクセスできる。");
+            assert(timer,
+                "タイマのリファレンスもクロージャ経由でアクセスできる。");
+          }
+        }, 10);
+      }
+
+      animateIt('box');
+
+    </script>
+  </body>
+</html>

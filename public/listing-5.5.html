@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 5.5</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="testSubject"></div>
+
+    <button type="button" id="testButton">Go!</button>
+
+    <script type="text/javascript">
+
+      jQuery('#testButton').click(function() {
+
+        var elem$ = jQuery("#testSubject");
+
+        elem$.html("Loading...");
+
+        jQuery.ajax({
+          url: "test.html",
+          success: function(html){
+            assert(elem$,
+                "このコールバックのクロージャを介してelem$を参照できる。");
+            elem$.html(html);
+          }
+        });
+        
+      });
+    </script>
+  </body>
+</html>

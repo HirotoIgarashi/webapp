@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 5.10</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="partial.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      String.prototype.csv = String.prototype.split.partial(/,\s*/);
+
+      var results = ("Mugen, Jin, Fuu").csv();
+
+      assert(results[0] == "Mugen" &&
+          results[1] == "Jin" &&
+          results[2] == "Fuu",
+          "テキストは正しい値に分解された。");
+    </script>
+  </body>
+</html>

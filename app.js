@@ -21,8 +21,16 @@ var
 // ----------------- モジュールスコープ変数終了 -------------------
 
 // ----------------- サーバ構成開始 -------------------------------
+app.configure( function () {
+  app.use( express.logger() );
+  app.use( express.bodyParser() );
+  app.use( express.methodOverride() );
+  app.use( express.static( __dirname + '/public' ) );
+  app.use( app.router );
+});
+
 app.get( '/', function( request, response ) {
-  response.send( 'Hello Express' );
+  response.redirect( '/index.html' );
 });
 // ----------------- サーバ構成終了 -------------------------------
 
