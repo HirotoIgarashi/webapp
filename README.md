@@ -49,5 +49,5 @@ $ npm install
 $ cd ~/git/webapp
 $ nave use latest
 $ node app.js
-listening on port 3000
+Express server listening on port 3000 in development mode
 ```
