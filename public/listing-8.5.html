@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 8.5</title>
+    <style type="text/css">
+      #box { position: absolute; background-color: #00bfff; border: 2px solid #00008b; padding: 8px; }
+    </style>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="subclass.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+  
+      (function() {
+
+        var queue   = [],
+            paused  = false;
+
+        this.test = function(fn) {
+          queue.push(fn);
+          runTest();
+        };
+
+        this.pause = function() {
+          paused = true;
+        };
+
+        this.resume = function() {
+          paused = false;
+          setTimeout(runTest, 1);
+        };
+
+        function runTest() {
+          if (!paused && queue.length) {
+            queue.shift()();
+            if (!paused) resume();
+          }
+        }
+      })();
+
+      test(function() {
+        pause();
+        setTimeout(function() {
+          assert(true, "第1のテストが完了した。");
+          resume();
+        }, 100);
+      });
+
+      test(function() {
+        pause();
+        setTimeout(function() {
+          assert(true, "第2のテストが完了した。");
+          resume();
+        }, 200);
+      });
+
+    </script>
+  </body>
+</html>

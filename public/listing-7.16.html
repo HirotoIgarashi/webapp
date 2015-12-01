@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 7.16</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="subclass.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      var pattern = /^((\w+)|(\\.))+$/;
+
+      var tests = [
+        "formUpdate",
+        "form\\.update\\.whatever",
+        "form\\:update",
+        "\\f\\o\\r\\m\\u\\p\\d\\a\\t\\e",
+        "form:update"
+      ];
+
+      for (var n = 0; n < tests.length; n++) {
+        assert(pattern.test(tests[n]),
+              tests[n] + " は有効な識別子。");
+      }
+
+    </script>
+  </body>
+</html>

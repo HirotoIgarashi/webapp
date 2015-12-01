@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 6.17</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      function User(first, last) {
+        this.name = first + "  " + last;
+      }
+
+      var name = "Rukia";
+
+      var user = User("Ichigo", "Kurosaki");
+
+      assert(name == "Rukia",
+          "nameにRukiaが設定されている。");
+
+    </script>
+  </body>
+</html>

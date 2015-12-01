@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 7.4</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="subclass.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="opacity"
+         style="opacity:0.5;filter:alpha(opacity=50);">
+    </div>
+
+    <script type="text/javascript">
+
+      function getOpacity(elem) {
+        var filter = elem.style.filter;
+        return filter ?
+          filter.indexOf("opacity=") >= 0 ?
+            (parseFloat(filter.match(/opacity=([^)]+)/)[1]) / 100) + "" :
+            "" :
+          elem.style.opacity;
+      }
+
+      window.onload = function() {
+        assert(getOpacity(document.getElementById("opacity")) == "0.5",
+           "要素の不透明度を取得した。");
+      }
+
+    </script>
+  </body>
+</html>
