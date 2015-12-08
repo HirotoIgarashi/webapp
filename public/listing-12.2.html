@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 12.2</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="testSubject"></div>
+
+    <script type="text/javascript">
+
+      var count = 500000;
+      var n;
+      var begin = new Date();
+      var end;
+      var testSubject = document.getElementById('testSubject');
+      var value;
+
+      for (n = 0; n < count; n++) {
+        value = testSubject.getAttribute('id');
+      }
+      end = new Date();
+      assert(true, 'Time for DOM method read: ' +
+          (end.getTime() - begin.getTime()));
+
+      begin = new Date();
+      for (n = 0; n < count; n++) {
+        value = testSubject.id;
+      }
+      end = new Date();
+      assert(true, 'Time for property read: ' +
+          (end.getTime() - begin.getTime()));
+
+      begin = new Date();
+      for (n = 0; n < count; n++) {
+        testSubject.setAttribute('id', 'testSubject');
+      }
+      end = new Date();
+      assert(true, 'Time for DOM method write: ' +
+          (end.getTime() - begin.getTime()));
+
+      begin = new Date();
+      for (n = 0; n < count; n++) {
+        testSubject.id = 'testSubject';
+      }
+      end = new Date();
+      assert(true, 'Time for property write: ' +
+          (end.getTime() - begin.getTime()));
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 10.3</title>
+    <style type="text/css">
+      #box { position: absolute; background-color: #00bfff; border: 2px solid #00008b; padding: 8px; }
+    </style>
+    <script src="http://base2.googlecode.com/svn/version/1.0.2/base2-p.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="subclass.js"></script>
+    <script type="text/javascript" src="globalEval.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      var ninja = { foo: "bar" },
+          value,
+          maxCount = 1000000,
+          n,
+          start,
+          elapsed;
+
+      start = new Date().getTime();
+      for (n = 0; n < maxCount; n++) {
+        value = ninja.foo;
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true, "Without with: " + elapsed);
+
+      start = new Date().getTime();
+      with(ninja) {
+        for (n = 0; n < maxCount; n++) {
+          value = foo;
+        }
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true, "With (with access): " + elapsed);
+
+      start = new Date().getTime();
+      with(ninja) {
+        for (n = 0; n < maxCount; n++) {
+          foo = n;
+        }
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true, "With (with assignment): " + elapsed);
+
+      start = new Date().getTime();
+      with(ninja) {
+        for (n = 0; n < maxCount; n++) {
+          value = "no test";
+        }
+      }
+      elapsed = new Date().getTime() - start;
+      assert(true, "With (withoute access): " + elapsed);
+
+    </script>
+  </body>
+</html>

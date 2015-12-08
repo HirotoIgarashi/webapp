@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 12.5</title>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <a href="listing-12.5.html" id="testSubject">Self</a>
+
+    <script type="text/javascript">
+
+      var link = document.getElementById('testSubject');
+      var linkHref = link.getAttributeNode('href').nodeValue;
+
+      assert(linkHref === 'listing-12.5.html',
+          'リンクのノード値はＯＫ');
+
+      assert(link.href === 'listing-12.5.html',
+          'リンクのプロパティ値はＯＫ');
+
+      assert(link.getAttribute('href') === linkHref,
+          'リンクの属性は変更されていない');
+
+
+    </script>
+  </body>
+</html>

@@ -32,6 +32,9 @@ app.configure( function () {
 app.get( '/', function( request, response ) {
   response.redirect( '/index.html' );
 });
+app.get( '/nowhere', function( request, response ) {
+  response.redirect( '/nowhere.html' );
+});
 // ----------------- サーバ構成終了 -------------------------------
 
 // ----------------- サーバ起動開始 -------------------------------

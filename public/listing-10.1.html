@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>Listing 10.1</title>
+    <style type="text/css">
+      #box { position: absolute; background-color: #00bfff; border: 2px solid #00008b; padding: 8px; }
+    </style>
+    <script src="http://base2.googlecode.com/svn/version/1.0.2/base2-p.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <script type="text/javascript" src="subclass.js"></script>
+    <script type="text/javascript" src="globalEval.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      var use = "other";
+
+      var katana = {
+        isSharp: true,
+        use: function() {
+          this.isSharp = !this.isSharp;
+        }
+      };
+
+      with (katana) {
+        assert(use !== "other" && typeof use == "function",
+            "useはkatanaオブジェクトの関数です。");
+        assert(this !== katana,
+            "コンテキストは変更されず、もとの値を保っている。");
+      }
+
+      assert(use === "other",
+        "withの外側ではuse変数への影響はない。");
+      assert(typeof isSharp === "undefined",
+          "withの外側にisSharpプロパティは存在しない。");
+
+    </script>
+  </body>
+</html>
