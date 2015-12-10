@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.11</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function isEventSupported(eventName) {
+
+        var element = document.createElement('div'),  //#1 テスト用に<div>要素を作成する。これは、あとで消去する。
+            isSupported;
+
+        eventName = 'on' + eventName;                 //#2 渡されたイベントがサポートされているかどうかを判定するために、そのイベントをサポートするプロパティが要素に存在するかチェックする。
+        isSupported = (eventName in element);
+
+        if (!isSupported) {
+          element.setAttribute(eventName, 'return;');
+          isSupported = typeof element[eventName] == 'function';
+        }
+
+        element = null;
+
+        return isSupported;
+      }
+
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 15.1</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="test"><b>Hello</b>, I'm a ninja!</div>
+    <div id="test"></div>
+
+    <script type="text/javascript">
+
+      window.onload = function() {
+
+        var divs = document.querySelectorAll("body > div");
+        assert(divs.length === 2, "CSSセレクタによって2個のdivを見つけた。");
+
+        var b = document.getElementById("test")
+          .querySelector("b:only-child");
+        assert(b,"太字の要素を、親要素との関係によって見つけた。");
+
+      };
+
+    </script>
+
+  </body>
+</html>

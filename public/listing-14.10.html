@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.10</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <script type="text/javascript">
+
+      function remove() {
+        jQuery("*", this).add([this]).each(function() {
+
+          jQuery.event.remove(this);
+
+          jQuery.removeData(this);
+        });
+
+        if (this.parentNode)
+          this.parentNode.removeChild(this);
+      }
+
+    </script>
+
+  </body>
+</html>

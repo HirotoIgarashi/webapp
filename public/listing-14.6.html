@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 14.6</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="root.js"></script>
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      function blobalEval(data) {
+        data = data.replace(/^\s+|\s+$/g, "");
+
+        if (data) {
+          var head = document.getElementsByTagName("head")[0] ||
+                      document.documentElement,
+              script = document.createElement("script");
+
+          script.type = "text/javascript";
+          script.text = data;
+
+          head.insertBefore(script, head.firstChild);
+          head.removeChild(script);
+        }
+      }
+      
+    </script>
+
+  </body>
+</html>

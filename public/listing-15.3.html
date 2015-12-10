@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 15.3</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div id="test"><b>Hello</b>, I'm a ninja!</div>
+
+    <script type="text/javascript">
+
+      (function() {
+        var count = 1;
+
+        this.rootedQuerySelectorAll = function(elem, query) {
+          var oldID = elem.id;
+          elem.id = "rooted" + (count++);
+
+          try {
+            return elem.querySelectorAll("#" + elem.id + " " + query);
+          }
+          catch (e) {
+            throw e;
+          }
+          finally {
+            elem.id = oldID;
+          }
+        };
+      })();
+
+      window.onload = function() {
+
+        var b = rootedQuerySelectorAll(
+            document.getElementById("test"), "div b");
+        assert(b.length === 0, "セレクタのルートが正しく設定された。");
+      };
+
+    </script>
+
+  </body>
+</html>

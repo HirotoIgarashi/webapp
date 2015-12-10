@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 15.6</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <script type="text/javascript">
+
+      var selector = "div.class > span:not(:first-child) a[href]"
+      var chunker = /((?:\([^\)]+\)|\[[^\]]+\]|[^ ,\(\[]+)+)(\s*,\s*)?/g;
+      var parts = [];
+
+      chunker.lastIndex = 0;
+
+      while ((m = chunker.exec(selector)) !== null) {
+        parts.push(m[1]);
+
+        if (m[2]) {
+          extra = RegExp.rightContext;
+          break;
+        }
+      }
+
+      assert(parts.length == 4,
+        "セレクタを4つのユニークな部分に分割した:");
+      assert(parts[0] === "div.class", "div セレクタ");
+      assert(parts[1] === ">", "child セレクタ");
+      assert(parts[2] === "span:not(:first-child)", "span セレクタ");
+      assert(parts[3] === "a[href]", "a セレクタ");
+
+    </script>
+
+  </body>
+</html>

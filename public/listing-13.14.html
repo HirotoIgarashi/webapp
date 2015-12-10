@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Listing 13.14</title>
+    <meta charset="utf8">
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="fixup.js"></script>
+    <script type="text/javascript" src="events.js"></script>
+    <script type="text/javascript" src="trigger.js"></script>
+    <script type="text/javascript" src="../scripts/assert.js"></script>
+    <link href="../styles/assert.css" rel="stylesheet" type="text/css">
+    <style>
+      .over { background: yellow; }
+    </style>
+    <script type="text/javascript">
+
+      (function() {
+
+        if (isEventSupported("mouseenter")) {
+
+          this.hover = function(elem, fn) {
+            addEvent(elem, "mouseenter", function() {
+              fn.call(elem, "mouseenter");
+            });
+
+            addEvent(elem, "mouseleave", function() {
+              fn.call(elem, "mouseleave");
+            });
+          };
+        }
+        else {
+
+          this.hover = function(elem, fn) {
+            addEvent(elem, "mouseover", function(e) {
+              withinElement(this, e, "mouseenter", fn);
+            });
+            addEvent(elem, "mouseout", function(e) {
+              withinElement(this, e, "mouseleave", fn);
+            });
+          };
+        }
+
+        function withinElement(elem, event, type, handle) {
+
+          var parent = event.relatedTarget;
+
+          while (parent && parent != elem) {
+            try {
+              parent = parent.parentNode;
+            }
+            catch (e) {
+              break;
+            }
+          }
+          if (parent != elem) {
+            handle.call(elem, type);
+          }
+        }
+      })();
+
+      window.onload = function() {
+        var div = document.getElementsByTagName("div")[0];
+
+        hover(div, function(type) {
+          if (type === "mouseenter") {
+            this.className = "over";
+          }
+          else {
+            this.className = "";
+          }
+        });
+      };
+
+      function isEventSupported(eventName) {
+        var element = document.createElement('div'),
+            isSupported;
+        eventName = 'on' + eventName;
+        isSupported = (eventName in element);
+        if (!isSupported) {
+          element.setAttribute(eventName, 'return;');
+          isSupported = typeof element[eventName] == 'function';
+        }
+        element = null;
+        return isSupported;
+      }
+
+    </script>
+  </head>
+  <body>
+
+    <div>おいらの<strong>上を</strong>飛んでみな!</div>
+
+  </body>
+</html>
